@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,15 +13,37 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.game {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 0.3em;
+}
+
+.game .cell {
+  border: 1px solid white;
+  width: 2em;
+  height: 2em;
+}
+
+.game .cell > input {
+  background-color: transparent;
+  font-size: inherit;
+  border: none;
+  width: 2em;
+  outline-offset: 0;
+  padding: 0;
+  color: inherit;
+
+  text-align: center;
 }
