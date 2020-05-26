@@ -31,9 +31,11 @@ input[type='number'] {
 }
 
 .game .cell {
+  position: relative;
   border: 1px solid white;
   width: 2em;
   height: 2em;
+  transition: background-color 0.1s ease-in;
 }
 
 .game .cell > input {
@@ -46,4 +48,21 @@ input[type='number'] {
   color: inherit;
 
   text-align: center;
+}
+
+.game .cell.-error {
+  background-color: rgb(250, 125, 125);
+}
+
+.game .cell.-focus::before {
+  display: inline;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  background-color: rgba(255, 255, 255, 0.1);
 }
