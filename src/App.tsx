@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import { useBoxes, Box, Cell as CellState } from './useBoxes'
 import {
@@ -52,8 +52,32 @@ const parseDifference = (previousValue: CellState, newValue: number) => {
   }
 }
 
+const transformToBoxes = (sudoku: string): Box[] => {
+  const cells = sudoku.split('').map((x) => (x === '0' ? '' : parseInt(x)))
+
+  return [...Array(9)].map((_box, boxIndex) => {
+    const baseIndex = 27 * Math.floor(boxIndex / 3) + (boxIndex % 3) * 3
+
+    return [
+      cells.slice(baseIndex, baseIndex + 3),
+      cells.slice(baseIndex + 9, baseIndex + 9 + 3),
+      cells.slice(baseIndex + 18, baseIndex + 18 + 3),
+    ] as Box
+  })
+}
+
 function App() {
+  const [loading, setLoading] = useState(true)
   const [{ boxes, focus }, dispatch] = useBoxes(initialState)
+
+  useEffect(() => {
+    fetch('/api/get-problem')
+      .then((res) => res.json())
+      .then((initial) => {
+        dispatch({ type: 'init', boxes: transformToBoxes(initial) })
+        setLoading(false)
+      })
+  }, [dispatch])
 
   const hasError = (coordinates: Coordinates): boolean =>
     hasRepetition(selectBox(boxes, coordinates.box))
@@ -99,6 +123,7 @@ function App() {
     <div className="App App-header">
       <h1>Sudoku</h1>
 
+      {loading && 'Loading...'}
       <div className="game">
         {boxes.map((boxArray, box) => (
           <table className="box" key={box}>

@@ -26,9 +26,17 @@ type Action =
       coordinates: Coordinates
     }
   | { type: 'blur' }
+  | {
+      type: 'init'
+      boxes: Box[]
+    }
 
 const boxesReducer = produce((draft: State, action: Action) => {
   switch (action.type) {
+    case 'init': {
+      draft.boxes = action.boxes
+      break
+    }
     case 'setValue': {
       const {
         coordinates: { box, row, cell },
