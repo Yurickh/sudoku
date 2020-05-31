@@ -33,6 +33,7 @@ input[type='number'] {
 }
 
 .game .cell {
+  font-size: 3vmin;
   position: relative;
   border: 1px solid white;
   width: 2em;
