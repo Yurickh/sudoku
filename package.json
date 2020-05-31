@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "vercel dev"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,6 +43,7 @@
     "@testing-library/dom": "^7.5.8",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.6",
-    "prettier": "npm:@btmills/prettier"
+    "prettier": "npm:@btmills/prettier",
+    "vercel": "^19.0.1"
   }
 }
