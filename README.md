@@ -6,5 +6,5 @@ This project was created to keep my wife busy so I can play some PS4.
 
 ```bash
 yarn install
-yarn dev
+yarn start
 ```

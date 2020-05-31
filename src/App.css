@@ -39,15 +39,22 @@ input[type='number'] {
 }
 
 .game .cell > input {
+  box-sizing: border-box;
   background-color: transparent;
   font-size: inherit;
-  border: none;
+  border: 0px solid white;
   width: 2em;
+  height: 2em;
   outline-offset: 0;
   padding: 0;
   color: inherit;
 
   text-align: center;
+}
+
+.game .cell > input:focus {
+  outline: none;
+  border-width: 1px;
 }
 
 .game .cell.-error {
