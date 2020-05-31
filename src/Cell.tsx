@@ -27,6 +27,7 @@ export const Cell: React.FunctionComponent<CellProps> = ({
   return (
     <td className={className}>
       <input
+        inputMode="numeric"
         value={value}
         onFocus={onFocus}
         onBlur={onBlur}
