@@ -1,11 +1,12 @@
 import React from 'react'
 import './App.css'
-import { useBoxes, Box, Cell } from './useBoxes'
+import { useBoxes, Box, Cell as CellState } from './useBoxes'
 import {
   Coordinates,
   toGlobalCoordinates,
   GlobalCoordinates,
 } from './coordinates'
+import { Cell } from './Cell'
 
 interface State {
   boxes: readonly Box[]
@@ -33,10 +34,10 @@ const selectColumn = (boxes: State['boxes'], column: number) =>
       : [],
   )
 
-const hasRepetition = (array: Cell[]): boolean =>
+const hasRepetition = (array: CellState[]): boolean =>
   new Set(array.filter(Boolean)).size < array.filter(Boolean).length
 
-const parseDifference = (previousValue: Cell, newValue: number) => {
+const parseDifference = (previousValue: CellState, newValue: number) => {
   if (newValue === 0) return ''
   if (previousValue === '') return newValue
 
@@ -105,23 +106,15 @@ function App() {
               {boxArray.map((rowArray, row) => (
                 <tr className="row" key={row}>
                   {rowArray.map((cellValue, cell) => (
-                    <td
-                      className={`cell ${
-                        hasError({ box, row, cell }) ? '-error' : ''
-                      } ${
-                        hasFocus(toGlobalCoordinates({ box, row, cell }))
-                          ? '-focus'
-                          : ''
-                      }`}
+                    <Cell
+                      error={hasError({ box, row, cell })}
+                      focus={hasFocus(toGlobalCoordinates({ box, row, cell }))}
+                      value={cellValue}
+                      onFocus={handleFocus({ box, row, cell })}
+                      onBlur={handleBlur()}
+                      onChange={handleChange({ box, row, cell })}
                       key={cell}
-                    >
-                      <input
-                        value={cellValue}
-                        onFocus={handleFocus({ box, row, cell })}
-                        onBlur={handleBlur()}
-                        onChange={handleChange({ box, row, cell })}
-                      />
-                    </td>
+                    />
                   ))}
                 </tr>
               ))}
