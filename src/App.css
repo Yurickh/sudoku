@@ -28,6 +28,8 @@ input[type='number'] {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 0.3em;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 
 .game .cell {
