@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import { useBoxes, Box, Cell as CellState } from './useBoxes'
+import { useBoxes, Box, Cell as CellState, State } from './useBoxes'
 import {
   Coordinates,
   toGlobalCoordinates,
   GlobalCoordinates,
 } from './coordinates'
 import { Cell } from './Cell'
-
-interface State {
-  boxes: readonly Box[]
-  focus: GlobalCoordinates | undefined
-}
 
 const initialState: State = {
   boxes: [...Array(9)].map(() =>

@@ -10,7 +10,7 @@ export type Cell = number | ''
 export type Row = readonly Cell[]
 export type Box = readonly Row[]
 
-interface State {
+export interface State {
   boxes: readonly Box[]
   focus: GlobalCoordinates | undefined
 }
