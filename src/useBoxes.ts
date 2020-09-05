@@ -31,6 +31,13 @@ type Action =
       boxes: Box[]
     }
 
+const shouldType = (value: any) => {
+  // should let user erase cell
+  if (value === '') return true
+  // or should be a valid number
+  return typeof value === 'number' && Number.isFinite(value)
+}
+
 const boxesReducer = produce((draft: State, action: Action) => {
   switch (action.type) {
     case 'init': {
@@ -42,6 +49,7 @@ const boxesReducer = produce((draft: State, action: Action) => {
         coordinates: { box, row, cell },
         value,
       } = action
+      if (!shouldType(value)) return
       // Override the readonly
       const boxes = draft.boxes as Cell[][][]
       boxes[box][row][cell] = value
