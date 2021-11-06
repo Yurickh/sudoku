@@ -2,6 +2,9 @@
   "name": "sudoku",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "<17"
+  },
   "scripts": {
     "start": "vercel dev",
     "build": "react-scripts build",
@@ -46,5 +49,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "immer": "^9.0.6",
+    "browserslist": "^4.16.5",
+    "glob-parent": "^5.1.2",
+    "nth-check": "^2.0.1",
+    "set-value": "^4.0.1"
   }
 }
